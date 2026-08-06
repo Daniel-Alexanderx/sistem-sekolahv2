@@ -14,7 +14,7 @@
 
         </div>
 
-        <a href="{{ route('majors.create') }}" class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
+        <a href="{{ route('major.create') }}" class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
 
             Catat Jurusan Baru
 
@@ -39,6 +39,8 @@
                     <th class="px-5 py-3.5 font-semibold">Nama Jurusan</th>
 
                     <th class="px-5 py-3.5 font-semibold">Deskripsi</th>
+
+                    <th class="px-5 py-3.5 font-semibold">Tindakan</th>
                 </tr>
 
             </thead>
@@ -67,9 +69,9 @@
 
                             <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                <a href="{{ route('majors.show', ['id' => 1]) }}" class="text-[#16213A] hover:text-[#A16207]">Lihat</a>
+                                <a href="{{ route('major.show', $major['id']) }}" class="text-[#16213A] hover:text-[#A16207]">Lihat</a>
 
-                                <a href="{{ route('majors.edit', ['id' => 1]) }}" class="text-[#16213A] hover:text-[#A16207]">Ubah</a>
+                                <a href="{{ route('major.edit', $major['id']) }}" class="text-[#16213A] hover:text-[#A16207]">Ubah</a>
 
                                 <form action="" method="POST"
                                     onsubmit="return confirm('Hapus data jurusan ini dari buku induk?')">

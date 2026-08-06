@@ -45,7 +45,10 @@ class MajorController extends Controller
      */
     public function create()
     {
-        return "Ini adalah halaman tambah Jurusan";
+        $title = 'Sistem Sekolah | Menambah Jurusan';
+        return view('major.create',[
+            'title' => $title
+        ]);
     }
 
     /**
@@ -61,7 +64,10 @@ class MajorController extends Controller
      */
     public function show(string $id)
     {
-        return "Menampilkan data Jurusan dengan ID: {$id}";
+        $title = 'Sistem Sekolah | Detail Jurusan';
+        return view('major.show', [
+            'title' => $title
+        ]);
     }
 
     /**
@@ -69,7 +75,10 @@ class MajorController extends Controller
      */
     public function edit(string $id)
     {
-        return "Ini adalah halaman edit Jurusan dengan ID: {$id}";
+        $title = 'Sistem Sekolah | Mengubah Data Jurusan';
+        return view('major.edit', [
+            'title' => $title
+        ]);
     }
 
     /**
