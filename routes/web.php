@@ -105,4 +105,4 @@ Route::name('schoolclass.')->prefix('schoolclass')->group(function () {
 
 
 //Manajemen Data Major (Resouce)
-Route::resource('major', MajorController::class);
+Route::resource('majors', MajorController::class);

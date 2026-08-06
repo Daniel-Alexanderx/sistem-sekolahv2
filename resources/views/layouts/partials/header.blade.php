@@ -16,13 +16,13 @@
 
             <nav class="hidden gap-8 text-sm md:flex">
 
-                <a href="#" class="text-white/55 hover:text-white">Siswa</a>
+                <a href="{{ route('students.index')}}" class="text-white/55 hover:text-white">Siswa</a>
 
-                <a href="#" class="text-white/55 hover:text-white">Guru</a>
+                <a href="{{ route('teachers.index') }}" class="text-white/55 hover:text-white">Guru</a>
 
-                <a href="#" class="text-white/55 hover:text-white">Kelas</a>
+                <a href="{{ route('schoolclass.index') }}" class="text-white/55 hover:text-white">Kelas</a>
 
-                <a href="#" class="text-white/55 hover:text-white">Jurusan</a>
+                <a href="{{ route('majors.index') }}" class="text-white/55 hover:text-white">Jurusan</a>
 
             </nav>
 
