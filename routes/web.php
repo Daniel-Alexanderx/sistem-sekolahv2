@@ -24,7 +24,7 @@ Route::name('students.')->prefix('students')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('index');
 
     // Halaman Detail Siswa
-    Route::get('/{id}', [StudentController::class, 'show'])->name('show');
+    Route::get('/{id}', [StudentController::class, 'show'])->name('show')->whereNumber('id');
 
     // Halaman Tambah Siswa
     Route::get('/create', [StudentController::class, 'create'])->name('create');
@@ -53,7 +53,7 @@ Route::name('teachers.')->prefix('teachers')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('index');
 
     // Halaman Detail Guru
-    Route::get('/{id}', [TeacherController::class, 'show'])->name('show');
+    Route::get('/{id}', [TeacherController::class, 'show'])->name('show')->whereNumber('id');
 
     // Halaman Tambah Guru
     Route::get('/create', [TeacherController::class, 'create'])->name('create');
@@ -82,7 +82,7 @@ Route::name('schoolclass.')->prefix('schoolclass')->group(function () {
     Route::get('/', IndexController::class)->name('index');
 
     // Halaman Detail SchoolClass
-    Route::get('/{id}', ShowController::class)->name('show');
+    Route::get('/{id}', ShowController::class)->name('show')->whereNumber('id');
 
     // Halaman Tambah SchoolClass
     Route::get('/create', CreateController::class)->name('create');
