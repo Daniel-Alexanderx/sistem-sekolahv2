@@ -12,8 +12,8 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $title = 'Sistem Sekolah | Daftar Kelas';
-        $schoolclass = [
+        $title = "Sistem Sekolah | Daftar Kelas";
+        $classes = [
             [
                 'id' => 1,
                 'name' => 'XII AKL 1',
@@ -28,12 +28,10 @@ class IndexController extends Controller
                 'major' => 'TKJ',
                 'homeroom_teacher' => 'Siti Aminah'
             ],
-
         ];
-
         return view('classes.index', [
             'title' => $title,
-            'schoolclass' => $schoolclass
+            'classes' => $classes
         ]);
     }
 }

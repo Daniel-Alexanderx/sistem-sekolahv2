@@ -76,33 +76,27 @@ Route::name('teachers.')->prefix('teachers')->group(function () {
 
 
 //Manajemen data SchoolClass (Invokable)
-Route::name('schoolclass.')->prefix('schoolclass')->group(function () {
+Route::name('classes.')->prefix('classes')->group(function(){
 
-    // Halaman Daftar SchoolClass
+    
     Route::get('/', IndexController::class)->name('index');
 
-    // Halaman Detail SchoolClass
-    Route::get('/{id}', ShowController::class)->name('show')->whereNumber('id');
-
-    // Halaman Tambah SchoolClass
     Route::get('/create', CreateController::class)->name('create');
 
-    // Halaman Edit SchoolClass
+    Route::get('/{id}', ShowController::class)->name('show');
+
     Route::get('/{id}/edit', EditController::class)->name('edit');
 
-    //Logika Tambah SchoolClass
     Route::post('/', StoreController::class)->name('store');
 
-    // Logika edit SchoolClass
-    Route::put('/{id}', UpdateController::class)->name('update');
-    ;
+    Route::put('/{$id}', UpdateController::class)->name('update');
 
-    //Logika Hapus SchoolClass
-    Route::delete('/{id}', DestroyController::class)->name('destroy');
+    Route::delete('/{$id}', DestroyController::class)->name('destroy');
 });
 
 
 
 
 //Manajemen Data Major (Resouce)
-Route::resource('major', MajorController::class);
+Route::resource('majors', MajorController::class)
+    ->parameters(['majors' => 'id']);
