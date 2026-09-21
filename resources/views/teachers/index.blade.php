@@ -5,51 +5,30 @@
 @section('content')
 
     <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
-
         <div>
-
             <p class="mb-1 text-[11px] uppercase tracking-[0.2em] text-[#A16207]">Tahun Ajaran 2025/2026</p>
 
             <h1 class="font-display text-3xl font-semibold text-[#16213A]">Daftar Guru</h1>
-
         </div>
-
         <a href="{{ route('teachers.create') }}" class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
-
             Catat Guru Baru
-
         </a>
 
     </div>
 
-
-
     <div class="border border-[#E5E3DB] bg-white">
-
         <table class="w-full text-left text-sm">
-
             <thead>
-
                 <tr class="border-b border-[#16213A] text-[11px] uppercase tracking-[0.15em] text-[#16213A]">
-
                     <th class="w-14 px-5 py-3.5 font-semibold">No.</th>
-
                     <th class="px-5 py-3.5 font-semibold">NIP</th>
-
                     <th class="px-5 py-3.5 font-semibold">Nama Lengkap</th>
-
                     <th class="px-5 py-3.5 font-semibold">Jenis Kelamin</th>
-
                     <th class="px-5 py-3.5 font-semibold">Mata Pelajaran</th>
-
                     <th class="px-5 py-3.5 font-semibold">Nomor Telepon</th>
-
                     <th class="px-5 py-3.5 font-semibold">Status</th>
-
                     <th class="px-5 py-3.5 text-right font-semibold">Tindakan</th>
-
                 </tr>
-
             </thead>
 
             <tbody>
@@ -81,7 +60,7 @@
                         </td>
 
                         <td class="px-5 py-4">
-                            {{ $teacher['status'] }}
+                             <x-status-badge :status="$teacher['status']" />
                         </td>
 
                         <td class="px-5 py-4">
