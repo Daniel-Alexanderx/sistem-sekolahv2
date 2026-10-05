@@ -5,7 +5,8 @@
 @section('content')
     <div class="mb-8 border-b border-[#E5E3DB] pb-5">
 
-        <a href="{{ route('students.index') }}" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">&larr; Buku
+        <a href="{{ route('students.index') }}"
+            class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">&larr; Buku
 
             Induk</a>
 
@@ -17,17 +18,21 @@
 
 
 
-    <form action="" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
+    <form action="{{ route('students.store') }}" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
 
-
+        @csrf
 
         <div>
 
             <label for="nis"
                 class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">NIS</label>
 
-            <input type="text" id="nis" name="nis" placeholder="Contoh: 2024010"
+            <input value="{{ old('nis') }}" type="text" id="nis" name="nis" placeholder="Contoh: 2024010"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+
+            @error('nis')
+                <spar class="text-red-500 py-2">{{ $message }}</span>
+            @enderror
 
         </div>
 
@@ -39,9 +44,11 @@
 
                 Lengkap</label>
 
-            <input type="text" id="name" name="name" placeholder="Nama lengkap siswa"
+            <input value="{{ old('name') }}" type="text" id="name" name="name" placeholder="Nama lengkap siswa"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
-
+            @error('name')
+                <spar class="text-red-500 py-2">{{ $message }}</span>
+            @enderror
         </div>
 
 
@@ -55,12 +62,17 @@
             <select id="gender" name="gender"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
 
-                <option value="L">Laki-laki</option>
+                <option value="">Pilih Gender</option>
 
-                <option value="P">Perempuan</option>
+                <option value="Laki-laki" @selected(old('gender') === 'Laki-laki')>Laki-laki</option>
+                <option value="Perempuan" @selected(old('gender') === 'Perempuan')>Perempuan</option>
+
 
             </select>
 
+            @error('gender')
+                <spar class="text-red-500 py-2">{{ $message }}</span>
+            @enderror
         </div>
 
 
@@ -75,13 +87,15 @@
 
                 <option value="">Pilih jurusan</option>
 
-                <option value="">AKL</option>
-
-                <option value="">TKJ</option>
-
-                <option value="">BiD</option>
+                <option value="AKL" @selected(old('major') === 'AKL')>AKL</option>
+                <option value="TKJ" @selected(old('major') === 'TKJ')>TKJ</option>
+                <option value="BiD" @selected(old('major') === 'BiD')>BiD</option>
 
             </select>
+
+            @error('major')
+                <span class="text-red-500 py-2">{{ $message }}</span>
+            @enderror
 
         </div>
 
@@ -92,21 +106,24 @@
             <label for="class"
                 class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Kelas</label>
 
-            <input type="text" id="class" name="class" placeholder="Contoh: X AKL 1"
+            <input value="{{ old('class') }}" type="text" id="class" name="class" placeholder="Contoh: X AKL 1"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
 
+            @error('class')
+                <spar class="text-red-500 py-2">{{ $message }}</span>
+            @enderror
         </div>
 
 
 
         <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
 
-            <a href="{{ route('students.index') }}" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">Batal</a>
+            <a href="{{ route('students.index') }}"
+                class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">Batal</a>
 
             <button type="submit"
-                class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">Simpan
-
-                ke Buku Induk</button>
+                class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">Simpan ke Buku
+                Induk</button>
 
         </div>
 
