@@ -13,9 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $userTeacherEmail = 'richard@ski.sch.id';
-
-        $userStudentEmail = 'andi@ski.sch.id';
+        $userTeacherEmail = 'daniel@gmail.com';
+        $userStudentEmail = 'daniel@ski.sch.id';
 
 
         // User Teacher
@@ -24,7 +23,7 @@ class UserSeeder extends Seeder
 
             ['email' => $userTeacherEmail],
             [
-                'name' => 'Richard Marcell',
+                'name' => 'Daniel Alexander',
                 'password' => bcrypt('password'),
                 'role' => 'teacher'
             ]
@@ -36,7 +35,7 @@ class UserSeeder extends Seeder
 
             ['email' => $userStudentEmail],
             [
-                'name' => 'Richard Marcell',
+                'name' => 'Andi',
                 'password' => bcrypt('password'),
                 'role' => 'student'
             ]

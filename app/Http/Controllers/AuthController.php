@@ -25,8 +25,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->route('students.index');
 
-        }
-        ;
+        };
 
 
         return back()->withErrors([
@@ -48,7 +47,7 @@ class AuthController extends Controller
 
         $validatedRequest = $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'unique:users, email'],
+            'email' => ['required', 'string', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
 
         ]);
