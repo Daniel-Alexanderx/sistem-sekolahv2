@@ -6,19 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Requests\Student\StoreRequest;
 use App\Http\Requests\Student\UpdateRequest;
 use Illuminate\Http\Request;
+use Nette\Utils\IHtmlString;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(request $request)
     {
         $title = 'Sistem Sekolah | Daftar Siswa';
 
+        $search = $request->query('search');
+        $class = $request->query('class');
+        $major = $request->query('major');
+
         $students = Student::select(['id', 'nis', 'name', 'class', 'major'])
-            ->get();
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('name', 'like', "%{$search}%");
+                });
+            })
+            ->when($class, fn($query, $class) => $query->where('class', '=', $class))   
+            ->when($major, fn($query, $major) => $query->where('major', '=', $major))
+            ->paginate(10)
+            ->withQueryString();
+
+
+        $schoolClasses = ['10 AKL', '11 AKL', '11 TKJ 1', '11 TKJ 2', '10 BiD', '12 TKJ 1', '12 TKJ 2', '12 TKJ 3'];
+        $majors = ['AKL', 'BiD', 'TKJ'];
 
         return view('students.index', [
             'title' => $title,
-            'students' => $students
+            'students' => $students,
+            'classes' => $schoolClasses,
+            'majors' => $majors
         ]);
     }
 
@@ -45,7 +65,7 @@ class StudentController extends Controller
         $title = 'Sistem Sekolah | Mengubah Data Siswa';
         return view('students.edit', [
             'title' => $title,
-            'student' =>$student
+            'student' => $student
         ]);
     }
 
@@ -58,7 +78,7 @@ class StudentController extends Controller
 
 
         Student::create($validatedRequest);
-       
+
 
         // Handle If Success
 
@@ -67,13 +87,13 @@ class StudentController extends Controller
     }
 
 
-    public function update(Student $student , UpdateRequest $request)
+    public function update(Student $student, UpdateRequest $request)
     {
         $validatedRequest = $request->validated();
 
         $student->update($validatedRequest);
 
-         return redirect()->route('students.index');
+        return redirect()->route('students.index');
     }
 
     public function destroy(Student $student)
